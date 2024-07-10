@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Sederhana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .calculator {
+            max-width: 300px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .input-group {
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <div class="input-group">
+        <label for="num1">Angka Pertama:</label>
+        <input type="number" id="num1" placeholder="Masukkan angka pertama">
+    </div>
+    <div class="input-group">
+        <label for="num2">Angka Kedua:</label>
+        <input type="number" id="num2" placeholder="Masukkan angka kedua">
+    </div>
+    <button onclick="hitung('tambah')">Tambah</button>
+    <button onclick="hitung('kurang')">Kurang</button>
+    <button onclick="hitung('kali')">Kali</button>
+    <button onclick="hitung('bagi')">Bagi</button>
+    <div class="input-group">
+        <label for="hasil">Hasil:</label>
+        <input type="text" id="hasil" readonly>
+    </div>
+</div>
+
+<script>
+    function hitung(operasi) {
+        const num1 = parseFloat(document.getElementById('num1').value);
+        const num2 = parseFloat(document.getElementById('num2').value);
+        let hasil;
+
+        if (isNaN(num1) || isNaN(num2)) {
+            alert('Harap masukkan kedua angka.');
+            return;
+        }
+
+        switch (operasi) {
+            case 'tambah':
+                hasil = num1 + num2;
+                break;
+            case 'kurang':
+                hasil = num1 - num2;
+                break;
+            case 'kali':
+                hasil = num1 * num2;
+                break;
+            case 'bagi':
+                if (num2 === 0) {
+                    alert('Pembagian dengan nol tidak diperbolehkan.');
+                    return;
+                }
+                hasil = num1 / num2;
+                break;
+            default:
+                return;
+        }
+
+        document.getElementById('hasil').value = hasil;
+    }
+</script>
+
+</body>
+</html>
